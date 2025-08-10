@@ -1,97 +1,154 @@
+/* Подключение современного шрифта */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 body { 
-    margin:0;
-    padding:0;
-    font-family:helvetica, sans-serif; 
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: #f9f9fb;
+    color: #222;
+    line-height: 1.6;
 }
 
+/* Ссылки */
 a { 
-    color:#00abff;
-    text-decoration:none; 
+    color: #0077ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: #0056cc;
 }
 
+/* Заголовки */
+h1, h2 { 
+    font-weight: 600;
+    color: #111;
+}
 h1 { 
-    font-weight:normal;
-    border-bottom:1px solid #bbb;
-    padding:0 0 10px 0;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
-
 h2 {
-    font-weight:normal;
-    margin:30px 0 0;
+    margin: 30px 0 10px;
 }
 
+/* Контент и сайдбар */
 #content { 
-    float:left;
-    width:60%;
-    padding:0 0 0 30px; 
+    flex: 1;
+    padding: 0 20px;
 }
-
 #sidebar { 
-    float:right;
-    width:30%;
-    padding:10px;
-    background:#efefef; 
-    height:100%;
+    width: 300px;
+    padding: 15px;
+    background: #f0f2f5; 
+    border-radius: 8px;
 }
 
+/* Flex вместо float */
+main {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Даты */
 p.date { 
-    color:#ccc;
-    font-family: georgia, serif;
+    color: #888;
+    font-family: 'Georgia', serif;
     font-size: 12px;
     font-style: italic; 
 }
 
-.left {
-    float:left;
-    margin-right:10px;
-}
-
-/* pagination */
+/* Пагинация */
 .pagination { 
-    margin:40px 0; 
-    font-weight:bold;
+    margin: 40px 0; 
+    font-weight: 600;
+    text-align: center;
+}
+.pagination a {
+    padding: 8px 14px;
+    margin: 0 4px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+.pagination a:hover {
+    background: #0077ff;
+    color: #fff;
+    border-color: #0077ff;
 }
 
-/* forms */
+/* Формы */
 label { 
-    float:left;
-    clear:both;
-    color:#333;
-    margin-bottom:4px; 
+    display: block;
+    margin-bottom: 4px; 
+    color: #333;
+    font-weight: 600;
 }
 input, textarea { 
-    clear:both;
-    float:left;
-    margin:0 0 10px;
-    background:#ededed;
-    border:0;
-    padding:6px 10px;
-    font-size:12px;
+    width: 100%;
+    margin-bottom: 12px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+input:focus, textarea:focus {
+    border-color: #0077ff;
+    box-shadow: 0 0 0 3px rgba(0,119,255,0.15);
+    outline: none;
 }
 input[type=submit] {
-    font-weight:bold;
-    background:#00abff;
-    color:#fff;
-    padding:10px 20px;
-    font-size:14px;
-    text-transform:uppercase; 
+    font-weight: bold;
+    background: #0077ff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    text-transform: uppercase; 
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.3s ease;
 }
-.errorlist { 
-    color:#cc0033;
-    float:left;
-    clear:both;
-    padding-left:10px; 
+input[type=submit]:hover {
+    background: #0056cc;
 }
 
-/* comments */
+/* Ошибки */
+.errorlist { 
+    color: #cc0033;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Комментарии */
 .comment {
-    padding:10px;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
 }
 .comment:nth-child(even) {
-    background:#efefef;
+    background: #f0f2f5;
 }
 .comment .info {
-    font-weight:bold;
-    font-size:12px;
-    color:#666;
+    font-weight: bold;
+    font-size: 13px;
+    color: #555;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    #sidebar {
+        width: 100%;
+    }
 }
