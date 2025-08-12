@@ -152,3 +152,22 @@ input[type=submit]:hover {
         width: 100%;
     }
 }
+
+.left {
+    float: left;
+    width: 46%; /* чтобы два блока влезли в одну строку */
+    margin-right: 4%; /* отступ между ними */
+    box-sizing: border-box; /* чтобы padding не ломал ширину */
+}
+
+/* убираем отступ у последнего блока */
+.left:last-child {
+    margin-right: 0;
+}
+
+/* чтобы родительский контейнер обтекал float */
+form::after {
+    content: "";
+    display: block;
+    clear: both;
+}

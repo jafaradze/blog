@@ -5,6 +5,7 @@ from django.views.generic import ListView
 from django.views.decorators.http import require_POST
 from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
+from taggit.models import Tag
 
 def post_share(request, post_id):
     # Извлечь пост по идентификатору id
@@ -61,11 +62,15 @@ class PostListView(ListView):
     template_name = 'blog/post/list.html'
 
 
-def post_list(request):
+def post_list(request, tag_slug=None):
     """
     Представление списка постов в виде функции
     """
     post_list = Post.published.all()
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        post_list = post_list.filter(tags__in=[tag])
     paginator = Paginator(post_list, 3)
     page_number = request.GET.get('page', 1)
     try:
@@ -77,7 +82,9 @@ def post_list(request):
     return render(
         request,
         'blog/post/list.html',
-        {'posts': posts}
+        {
+            'posts': posts,
+            'tag': tag}
     )
 
 def post_detail(request, year, month, day, post):
